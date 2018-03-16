@@ -1,0 +1,11 @@
+D:\Дипломна\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.deps.json
+D:\Дипломна\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.runtimeconfig.json
+D:\Дипломна\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.runtimeconfig.dev.json
+D:\Дипломна\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.dll
+D:\Дипломна\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.pdb
+D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.csprojResolveAssemblyReference.cache
+D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.csproj.CoreCompileInputs.cache
+D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.AssemblyInfoInputs.cache
+D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.AssemblyInfo.cs
+D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.dll
+D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.pdb
