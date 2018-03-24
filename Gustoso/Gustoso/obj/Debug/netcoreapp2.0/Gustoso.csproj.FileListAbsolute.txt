@@ -9,3 +9,14 @@ D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.AssemblyInfo
 D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.AssemblyInfo.cs
 D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.dll
 D:\Дипломна\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.pdb
+D:\Gustoso_Backend\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.deps.json
+D:\Gustoso_Backend\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.runtimeconfig.json
+D:\Gustoso_Backend\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.runtimeconfig.dev.json
+D:\Gustoso_Backend\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.dll
+D:\Gustoso_Backend\Gustoso\Gustoso\bin\Debug\netcoreapp2.0\Gustoso.pdb
+D:\Gustoso_Backend\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.csprojResolveAssemblyReference.cache
+D:\Gustoso_Backend\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.csproj.CoreCompileInputs.cache
+D:\Gustoso_Backend\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.AssemblyInfoInputs.cache
+D:\Gustoso_Backend\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.AssemblyInfo.cs
+D:\Gustoso_Backend\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.dll
+D:\Gustoso_Backend\Gustoso\Gustoso\obj\Debug\netcoreapp2.0\Gustoso.pdb

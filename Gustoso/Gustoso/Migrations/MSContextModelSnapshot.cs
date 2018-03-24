@@ -17,8 +17,26 @@ namespace Gustoso.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Gustoso.Common.Models.ContactUs", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("clientEmail");
+
+                    b.Property<string>("clientMessage");
+
+                    b.Property<string>("clientName");
+
+                    b.Property<string>("clientSubject");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ContactUs");
+                });
 
             modelBuilder.Entity("Gustoso.Common.Models.MenuItem", b =>
                 {
@@ -36,6 +54,22 @@ namespace Gustoso.Migrations
                     b.HasKey("id");
 
                     b.ToTable("MenuItems");
+                });
+
+            modelBuilder.Entity("Gustoso.Common.Models.Rating", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ratingValue");
+
+                    b.Property<string>("slideName");
+
+                    b.Property<string>("userName");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Gustoso.Common.Models.User", b =>

@@ -35,7 +35,7 @@ namespace Gustoso.Services
             var isEmailAlreadyUsed = await _userManager.Users.AnyAsync(p => p.Email == registration.Email);
             if (isEmailAlreadyUsed)
             {
-                response.Error = new Error(418, "Даний email вже використовується.");
+                response.Error = new Error(418, "This email is already in use.");
                 return response;
             }
 
@@ -56,12 +56,12 @@ namespace Gustoso.Services
 
             if (resultCreateUser.Succeeded && resultCreateRole.Succeeded)
             {
-                var message = new RegResponseDTO("Вітаємо в системі!");
+                var message = new RegResponseDTO("Welcome to the system!");
                 response.Data = message;
             }
             else
             {
-                response.Error = new Error(400, "Помилка реєстрації!");
+                response.Error = new Error(400, "Registration failed!");
                 return response;
             }
 
@@ -76,7 +76,7 @@ namespace Gustoso.Services
 
             if(user == null)
             {
-                response.Error = new Error(404, "Користувач не знайдений, або ви ввели некорекні дані");
+                response.Error = new Error(404, "The user was not found or you entered incorrect data.");
                 return response;
             }
 

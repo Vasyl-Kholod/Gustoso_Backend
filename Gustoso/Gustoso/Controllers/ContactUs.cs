@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Gustoso.Controllers
 {
+    [Authorize("Bearer")]
     [Route("api/ContactUs")]
     public class ContactUs : Controller
     {

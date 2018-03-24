@@ -16,5 +16,7 @@ namespace Gustoso.Context
         public DbSet<MenuItem> MenuItems { get; set; }
 
         public DbSet<ContactUs> ContactUs { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
     }
 }

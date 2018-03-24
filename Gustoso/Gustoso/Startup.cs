@@ -98,6 +98,7 @@ namespace Gustoso
             services.AddTransient<IPriceListService, PriceListService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IContactUsService, ContactUsService>();
+            services.AddTransient<IRatingService, RatingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -141,7 +142,6 @@ namespace Gustoso
             {
                 try
                 {
-                    context.Database.EnsureCreated();
                     context.Database.Migrate();
                 }
                 catch (Exception)
@@ -186,6 +186,30 @@ namespace Gustoso
                             await roleManager.CreateAsync(identityRole);
                             await roleManager.AddClaimAsync(identityRole, new Claim(ClaimsIdentity.DefaultRoleClaimType, role.ToString()));
                         }
+                    }
+                }
+
+                if (!context.Users.Any())
+                {
+                    using (var scope = provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                    {
+                        var _userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+                        DateTime dateNow = DateTime.UtcNow;
+
+                        var user = new User
+                        {
+                            Email = "gustosobackery@gmail.com",
+                            UserName = "gustosobackery@gmail.com",
+                            FirstName = "Gustoso",
+                            LastName = "Backery",
+                            Phone = "380000000000",
+                            DateOfRegistration = dateNow.ToString()
+                        };
+
+                        // добавляем пользователя
+                        var resultCreatedUser = await _userManager.CreateAsync(user, "Gustoso_99");
+                        var resultCreatedRole = await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
                     }
                 }
 

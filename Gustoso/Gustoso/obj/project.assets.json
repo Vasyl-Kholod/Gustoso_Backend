@@ -13286,11 +13286,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Дипломна\\Gustoso\\Gustoso\\Gustoso.csproj",
+      "projectUniqueName": "D:\\Gustoso_Backend\\Gustoso\\Gustoso\\Gustoso.csproj",
       "projectName": "Gustoso",
-      "projectPath": "D:\\Дипломна\\Gustoso\\Gustoso\\Gustoso.csproj",
+      "projectPath": "D:\\Gustoso_Backend\\Gustoso\\Gustoso\\Gustoso.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\Дипломна\\Gustoso\\Gustoso\\obj\\",
+      "outputPath": "D:\\Gustoso_Backend\\Gustoso\\Gustoso\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
