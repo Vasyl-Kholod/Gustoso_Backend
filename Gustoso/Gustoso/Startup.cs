@@ -99,6 +99,7 @@ namespace Gustoso
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IContactUsService, ContactUsService>();
             services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<IReservationService, ReservationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

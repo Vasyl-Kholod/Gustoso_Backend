@@ -80,6 +80,12 @@ namespace Gustoso.Services
                 return response;
             }
 
+            User userDB = await _db.Users.Where(u => u.Email == loginObj.Login).FirstOrDefaultAsync();
+
+            var roleObj = await _db.UserRoles.Where(r => r.UserId == userDB.Id).FirstOrDefaultAsync();
+
+            var objWithRoleName = await _db.Roles.Where(r => r.Id == roleObj.RoleId).FirstOrDefaultAsync();
+
             var now = DateTime.UtcNow;
 
             var expires = now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME));
@@ -93,7 +99,7 @@ namespace Gustoso.Services
                     signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            var loginResponse = new LoginResponseDTO(encodedJwt, expires.ToString());
+            var loginResponse = new LoginResponseDTO(encodedJwt, expires.ToString(), objWithRoleName.Name);
 
             response.Data = loginResponse;
 

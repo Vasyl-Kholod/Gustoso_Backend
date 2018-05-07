@@ -72,6 +72,42 @@ namespace Gustoso.Migrations
                     b.ToTable("Ratings");
                 });
 
+            modelBuilder.Entity("Gustoso.Common.Models.Reservation", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("clientEmail");
+
+                    b.Property<string>("clientName");
+
+                    b.Property<string>("clientPhone");
+
+                    b.Property<DateTime>("dateOfReservation");
+
+                    b.Property<bool>("isConfirmed");
+
+                    b.Property<int>("tableNumber");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("Gustoso.Common.Models.ReservationStatus", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("id_reservation");
+
+                    b.Property<string>("status");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ReservationStatus");
+                });
+
             modelBuilder.Entity("Gustoso.Common.Models.User", b =>
                 {
                     b.Property<string>("Id")

@@ -10,5 +10,7 @@ namespace Gustoso.Common.DTO.Response.Login
         string Token { get; set; }
 
         string ExpirationTime { get; set; }
+
+        string Role { get; set; }
     }
 }

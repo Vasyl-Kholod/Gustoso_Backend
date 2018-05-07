@@ -1,0 +1,20 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="padding: 0;margin: 0;color: #000000;font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;min-width: 300px;">
+    <div class="email-wrapper" style="margin: 0 auto;margin-top: 20px;max-width: 700px;background-color:  #FFF;padding: 15px;">
+        <div class="email-wrapper__img" style="text-align: center;padding: 10px 0;">
+            <img src="https://cherevatyi.com/gustoso_logo.png" alt="">
+        </div>
+        <div class="email-wrapper__content" style="margin: 0px 30px;background-color: #f4f4f4;padding: 15px;border-radius: 10px;">
+            <p><span style="font-size: 19px;font-weight: 600">clientName</span>, your order was declined! We apologize for your patience.</p>
+            <p style="text-align: right;">Yours faithfully, Gustoso.</p>
+        </div>
+    </div>
+</body>
+
+</html>

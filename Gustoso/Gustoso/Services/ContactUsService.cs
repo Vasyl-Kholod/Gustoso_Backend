@@ -18,6 +18,7 @@ namespace Gustoso.Services
     {
         private readonly MSContext _db;
         private readonly string _email;
+        private readonly string _my_email;
         private readonly string _password;
         private readonly string _host;
         private static object _smtpLocker = new object();
@@ -28,6 +29,7 @@ namespace Gustoso.Services
             _db = context;
             var config = root.GetSection("SmtpConfig");
             _email = config["email"];
+            _my_email = config["my_email"];
             _password = config["password"];
             _host = config["host"];
         }
@@ -51,6 +53,7 @@ namespace Gustoso.Services
 
         public async Task sendToEmail(IContactUsDTO obj)
         {
+
             string emailBody = "";
             using (StreamReader sr = new StreamReader("EmailBodyHTML.txt"))
             {
@@ -69,7 +72,7 @@ namespace Gustoso.Services
                 IsBodyHtml = true,
             })
             {
-                Message.To.Add(new MailAddress(obj.clientEmail));
+                Message.To.Add(new MailAddress(_my_email));
                 lock (_smtpLocker)
                 {
                     using (SmtpClient Smtp = new SmtpClient()

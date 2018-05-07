@@ -12,12 +12,15 @@ namespace Gustoso.Common.DTO.Response.Login
 
         public string ExpirationTime { get; set; }
 
+        public string Role { get; set; }
+
         public LoginResponseDTO() { }
 
-        public LoginResponseDTO(string _token, string _expirationTime)
+        public LoginResponseDTO(string _token, string _expirationTime, string role)
         {
             Token = _token;
             ExpirationTime = _expirationTime;
+            Role = role;
         }
 
     }
