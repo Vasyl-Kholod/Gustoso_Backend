@@ -32,6 +32,17 @@ namespace Gustoso.Controllers
             return Ok(response.Data);
         }
 
+        [HttpGet("GetActiveReservation")]
+        public async Task<IActionResult> GetActiveReservation()
+        {
+            var response = await _service.GetActiveReservationListAsync();
+            if (response.Error != null)
+            {
+                return StatusCode(response.Error.ErrorCode, response.Error.ErrorDescription);
+            }
+            return Ok(response.Data);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateReservation([FromBody] ReservationDTO dto)
         {

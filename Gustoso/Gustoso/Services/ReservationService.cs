@@ -35,13 +35,40 @@ namespace Gustoso.Services
         public async Task<Response<List<Reservation>>> GetReservationListAsync()
         {
             var response = new Response<List<Reservation>>();
-            var data = await _db.Reservations.Where(r => r.isConfirmed == false).ToListAsync();
+            var todayDateNow = DateTime.Now;
+            var data = await _db.Reservations.Where(r => r.isConfirmed == false && r.dateOfReservation >= todayDateNow).ToListAsync();
             if(data.Count.ToString() == "0")
             {
                 response.Error = new Error(404, "Reservation not found");
             } else
             {
                 response.Data = data;
+            }
+            return response;
+        }
+
+        public async Task<Response<List<Reservation>>> GetActiveReservationListAsync()
+        {
+            var response = new Response<List<Reservation>>();
+            var todayDateNow = DateTime.Now;
+            var todayDateMax = new DateTime(todayDateNow.Year, todayDateNow.Month, todayDateNow.Day, 23, 59, 59, 999);
+            var reservation = await _db.Reservations.Where(r => r.isConfirmed == true && (r.dateOfReservation >= todayDateNow && r.dateOfReservation <= todayDateMax)).ToListAsync();
+            var reservationStatus = await _db.ReservationStatus.Where(s => s.status == "confirm").ToArrayAsync();
+            foreach(var el in reservation)
+            {
+                var data = reservationStatus.Where(s => s.id_reservation == el.id).FirstOrDefault() as ReservationStatus;
+                if(data == null)
+                {
+                    reservation.Remove(el);
+                }
+            }
+            if (reservation.Count.ToString() == "0")
+            {
+                response.Error = new Error(404, "Reservation not found");
+            }
+            else
+            {
+                response.Data = reservation;
             }
             return response;
         }
