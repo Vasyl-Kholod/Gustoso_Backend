@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Gustoso.Services
         private readonly string _password;
         private readonly string _host;
         private static object _smtpLocker = new object();
+        private static readonly HttpClient client = new HttpClient();
 
 
         public ContactUsService(IConfigurationRoot root, MSContext context)
@@ -63,37 +65,17 @@ namespace Gustoso.Services
                 emailBody = emailBody.Replace("clientSubject", obj.clientSubject);
                 emailBody = emailBody.Replace("clientMessage", obj.clientMessage);
             }
-            using (MailMessage Message = new MailMessage()
-            {
-                Subject = $"{obj.clientName} звертається до вас з сервісу Gustoso Backery",
-                Body = emailBody,
-                BodyEncoding = Encoding.GetEncoding("utf-8"),
-                From = new MailAddress(_email),
-                IsBodyHtml = true,
-            })
-            {
-                Message.To.Add(new MailAddress(_my_email));
-                lock (_smtpLocker)
-                {
-                    using (SmtpClient Smtp = new SmtpClient()
-                    {
-                        Host = _host,
-                        Credentials = new System.Net.NetworkCredential(_email, _password),
-                        EnableSsl = true,
-                        Timeout = 20_000,
-                    })
-                    {
-                        Smtp.SendCompleted += SendCompleted;
-                        Smtp.Send(Message);
-                        Smtp.Dispose();
-                    }
-                }
-            }
-        }
 
-        private static void SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            var responseSend = e;
+            var values = new Dictionary<string, string>
+            {
+               { "email", _my_email },
+               { "subject", $"{obj.clientName} звертається до вас з сервісу Gustoso Backery" },
+               { "body", emailBody }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync($"{_host}/send-email", content);
         }
     }
 }
