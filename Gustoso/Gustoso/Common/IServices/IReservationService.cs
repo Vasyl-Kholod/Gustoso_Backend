@@ -13,6 +13,6 @@ namespace Gustoso.Common.IServices
         Task<Response<List<Reservation>>> GetReservationListAsync();
         Task<Response<List<Reservation>>> GetActiveReservationListAsync();
         Task<Response<string>> CreateReservationAsync(ReservationDTO dto);
-        Task<Response<string>> ChangeStatusAsync(int id, Boolean isCanceled);
+        Task<Response<Dictionary<string, string>>> ChangeStatusAsync(int id, Boolean isCanceled);
     }
 }

@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +22,6 @@ namespace Gustoso.Services
         private readonly string _password;
         private readonly string _host;
         private static object _smtpLocker = new object();
-        private static readonly HttpClient client = new HttpClient();
 
         public ReservationService(IConfigurationRoot root, MSContext context)
         {
@@ -101,9 +99,9 @@ namespace Gustoso.Services
             return response;
         }
 
-        public async Task<Response<string>> ChangeStatusAsync(int id, Boolean isCaceled = true)
+        public async Task<Response<Dictionary<string, string>>> ChangeStatusAsync(int id, Boolean isCaceled = true)
         {
-            var response = new Response<string>();
+            var response = new Response<Dictionary<string, string>>();
             var reservation = await _db.Reservations.AsNoTracking().Where(r => r.id == id).FirstOrDefaultAsync();
             reservation.isConfirmed = true;
             _db.Reservations.Update(reservation);
@@ -114,12 +112,11 @@ namespace Gustoso.Services
             };
             await _db.ReservationStatus.AddAsync(reservationStatus);
             await _db.SaveChangesAsync();
-            await sendToEmail(reservation, isCaceled);
-            response.Data = "Status has been successfully changed";
+            response.Data = await sendToEmail(reservation, isCaceled);
             return response;
         }
 
-        public async Task sendToEmail(Reservation obj, Boolean status)
+        public async Task<Dictionary<string, string>> sendToEmail(Reservation obj, Boolean status)
         {
 
             string emailBody = "";
@@ -142,9 +139,7 @@ namespace Gustoso.Services
                { "body", emailBody }
             };
 
-            var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync($"{_host}/send-email", content);
+            return values;
         }
     }
 }

@@ -7,10 +7,6 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Gustoso.Services
@@ -23,7 +19,6 @@ namespace Gustoso.Services
         private readonly string _password;
         private readonly string _host;
         private static object _smtpLocker = new object();
-        private static readonly HttpClient client = new HttpClient();
 
 
         public ContactUsService(IConfigurationRoot root, MSContext context)
@@ -36,9 +31,9 @@ namespace Gustoso.Services
             _host = config["host"];
         }
 
-        public async Task<Response<string>> addMessage(IContactUsDTO obj)
+        public async Task<Response<Dictionary<string, string>>> addMessage(IContactUsDTO obj)
         {
-            var response = new Response<string>();
+            var response = new Response<Dictionary<string, string>>();
             var objToDB = new ContactUs()
             {
                 clientName = obj.clientName,
@@ -48,12 +43,11 @@ namespace Gustoso.Services
             };
             await _db.ContactUs.AddAsync(objToDB);
             await _db.SaveChangesAsync();
-            await sendToEmail(obj);
-            response.Data = "Message is success saved!";
+            response.Data = await sendToEmail(obj);
             return response;
         }
 
-        public async Task sendToEmail(IContactUsDTO obj)
+        public async Task<Dictionary<string, string>> sendToEmail(IContactUsDTO obj)
         {
 
             string emailBody = "";
@@ -73,9 +67,7 @@ namespace Gustoso.Services
                { "body", emailBody }
             };
 
-            var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync($"{_host}/send-email", content);
+            return values;
         }
     }
 }

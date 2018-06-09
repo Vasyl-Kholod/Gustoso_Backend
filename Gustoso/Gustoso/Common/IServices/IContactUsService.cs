@@ -9,8 +9,6 @@ namespace Gustoso.Common.IServices
 {
     public interface IContactUsService
     {
-        Task<Response<string>> addMessage(IContactUsDTO obj);
-
-        Task sendToEmail(IContactUsDTO obj);
+        Task<Response<Dictionary<string, string>>> addMessage(IContactUsDTO obj);
     }
 }
